@@ -1,0 +1,12 @@
+204c204
+<   $repl = '<a href="$1://$2" rel="nofollow" title="$1://$2">$2</a>';
+---
+>   $repl = '<a href="$1://$2" rel="nofollow" title="$1://$2" target="_blank">$2</a>';
+208c208
+<   $repl = '<a href="http://twitter.com/$1" rel="nofollow" title="@$1">@$1</a>';
+---
+>   $repl = '<a href="http://twitter.com/$1" rel="nofollow" title="@$1" target="_blank">@$1</a>';
+212c212
+<   $repl = '<a href="http://twitter.com/#!/search?q=%23$1" title="#$1" rel="nofollow">#$1</a>';
+---
+>   $repl = '<a href="http://twitter.com/#!/search?q=%23$1" title="#$1" rel="nofollow" target="_blank">#$1</a>';
