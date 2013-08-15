@@ -1,12 +1,23 @@
-204c204
-<   $repl = '<a href="$1://$2" rel="nofollow" title="$1://$2">$2</a>';
----
->   $repl = '<a href="$1://$2" rel="nofollow" title="$1://$2" target="_blank">$2</a>';
-208c208
-<   $repl = '<a href="http://twitter.com/$1" rel="nofollow" title="@$1">@$1</a>';
----
->   $repl = '<a href="http://twitter.com/$1" rel="nofollow" title="@$1" target="_blank">@$1</a>';
-212c212
-<   $repl = '<a href="http://twitter.com/#!/search?q=%23$1" title="#$1" rel="nofollow">#$1</a>';
----
->   $repl = '<a href="http://twitter.com/#!/search?q=%23$1" title="#$1" rel="nofollow" target="_blank">#$1</a>';
+diff --git a/twitter_pull.module b/twitter_pull.module
+index 8798315..237f64b 100644
+--- a/twitter_pull.module
++++ b/twitter_pull.module
+@@ -201,15 +201,15 @@ function twitter_pull_retrieve($twitkey, $num_items = NULL, $rts = NULL, $exclud
+  */
+ function twitter_pull_add_links($text) {
+   $pattern = '#(https?)://([^\s\(\)\,]+)#ims';
+-  $repl = '<a href="$1://$2" rel="nofollow" title="$1://$2">$2</a>';
++  $repl = '<a href="$1://$2" rel="nofollow" title="$1://$2" target="_blank">$2</a>';
+   $text = preg_replace($pattern, $repl, $text);
+ 
+   $pattern = '#@(\w+)#ims';
+-  $repl = '<a href="http://twitter.com/$1" rel="nofollow" title="@$1">@$1</a>';
++  $repl = '<a href="http://twitter.com/$1" rel="nofollow" title="@$1" target="_blank">@$1</a>';
+   $text = preg_replace($pattern, $repl, $text);
+ 
+   $pattern = '/[#]+([A-Za-z0-9-_]+)/';
+-  $repl = '<a href="http://twitter.com/#!/search?q=%23$1" title="#$1" rel="nofollow">#$1</a>';
++  $repl = '<a href="http://twitter.com/#!/search?q=%23$1" title="#$1" rel="nofollow" target="_blank">#$1</a>';
+   $text = preg_replace($pattern, $repl, $text);
+ 
+   return filter_xss($text);
